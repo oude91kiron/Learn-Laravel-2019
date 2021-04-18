@@ -51,6 +51,7 @@ class UserController extends Controller
     // Method to delete a user.
     public function destroy(User $user) {
 
+        $user->posts()->delete();
         $user->delete();
 
         session()->flash('user-deleted', 'User Has Been Deleted');

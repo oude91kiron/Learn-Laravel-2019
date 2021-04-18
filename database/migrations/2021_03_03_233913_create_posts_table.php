@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersPermissionsTable extends Migration
+class CreatePostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateUsersPermissionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('permission_user', function (Blueprint $table) {
-            $table->primary(['user_id', 'permission_id']);
+        Schema::create('posts', function (Blueprint $table) {
+            $table->id();
+            // This mean when user has been deleted, it's posts will delete as well.
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('permission_id')->constrained()->onDelete('cascade');
+            $table->string('title');
+            $table->text('post_image')->nullable();
+            $table->text('body');
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ class CreateUsersPermissionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('permission_user');
+        Schema::dropIfExists('posts');
     }
 }
