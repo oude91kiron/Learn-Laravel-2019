@@ -14,7 +14,6 @@ class CreateUsersPermissionsTable extends Migration
     public function up()
     {
         Schema::create('permission_user', function (Blueprint $table) {
-
             $table->primary(['user_id', 'permission_id']);
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('permission_id')->constrained()->onDelete('cascade');

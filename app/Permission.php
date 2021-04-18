@@ -9,7 +9,7 @@ class Permission extends Model
 
 
     // Avoid misassignment, note: $fillable more secure
-    protected $guarded = [];
+    protected $fillable = ['name', 'slug'];
 
     // Method allow the object of the class to reach the data
     // in the roles table.
