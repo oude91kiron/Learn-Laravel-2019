@@ -56,8 +56,13 @@
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <x-admin-sidebar-posts-links></x-admin-sidebar-posts-links>
-      <x-admin-sidebar-users-links></x-admin-sidebar-users-links>
+      <x-admin.sidebar.admin-sidebar-posts-links></x-admin.sidebar.admin-sidebar-posts-links>
+
+      <!-- S33/228 Only the user that an admin can see user links -->
+      @if(auth()->user()->userHasRole('Admin'))
+      <x-admin.sidebar.admin-sidebar-users-links></x-admin.sidebar.admin-sidebar-users-links>
+      @endif
+
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
@@ -286,7 +291,7 @@
             <div class="topbar-divider d-none d-sm-block"></div>
 
             <!-- Nav Item - User Information -->
-            <x-admin-top-navbar-user-information></x-admin-top-navbard-user-information>
+            <x-admin.top-nav.admin-top-navbar-user-information></x-admin.top-nav.admin-top-navbard-user-information>
 
           </ul>
 

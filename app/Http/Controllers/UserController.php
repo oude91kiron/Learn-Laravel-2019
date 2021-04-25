@@ -4,13 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Role;
 
 class UserController extends Controller
 {
     // Show method to view the profile page of the user.
     public function show(User $user) {
 
-        return view('admin.users.profile', ['user'=>$user]);
+        return view('admin.users.profile', [
+            
+            'user'=>$user,
+            'roles'=>Role::all()
+            
+            ]);
     }
 
 
@@ -39,6 +45,29 @@ class UserController extends Controller
 
     }
 
+
+    // Method that attach the user role.
+    public function attach(User $user) {
+    
+        //dd(request('role'));
+        
+        $user->roles()->attach(request('role'));
+
+        return back();
+    }
+
+
+        // Method that detach the user role.
+        public function detach(User $user) {
+    
+            //dd(request('role'));
+            
+            $user->roles()->detach(request('role'));
+    
+            return back();
+        }
+
+
     // Method to view all the users.
     public function index() {
 
@@ -58,4 +87,6 @@ class UserController extends Controller
 
         return back();
     }
+
+    
 }
