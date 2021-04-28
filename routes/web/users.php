@@ -2,9 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 Route::middleware('role:Admin')->group(function()
     {
-        // only the admin user can rute to the page admin/users.
+        // only the admin user can route to the page admin/users.
         Route::get('admin/users', 'UserController@index')->name('users.index');
 
     });
@@ -23,6 +24,9 @@ Route::middleware('auth')->group(function() {
 
     Route::DELETE('/users/{user}/destroy', 'UserController@destroy')->name('user.destroy');
 
+    Route::put('/users/{user}/attach', 'UserController@attach')->name('user.role.attach');
+    Route::put('/users/{user}/detach', 'UserController@detach')->name('user.role.detach');
+
 });
 
 Route::middleware(['auth', 'can:view,user'])->group(function() 
@@ -30,9 +34,5 @@ Route::middleware(['auth', 'can:view,user'])->group(function()
         Route::get('/users/{user}/profile', 'UserController@show')->name('user.profile.show');
     });
 
-
-Route::put('/users/{user}/attach', 'UserController@attach')->name('user.role.attach');
-
-Route::put('/users/{user}/detach', 'UserController@detach')->name('user.role.detach');
-
+    
 ?>
