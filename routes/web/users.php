@@ -17,19 +17,17 @@ Route::middleware('role:Admin')->group(function()
      * all the routes that need the user to be authorized.
      * 2. Create a Route to send user from admin page to the create page.
     */
-
-Route::middleware('auth')->group(function() {
     
     Route::PUT('/users/{user}/update', 'UserController@update')->name('user.profile.update');
 
     Route::DELETE('/users/{user}/destroy', 'UserController@destroy')->name('user.destroy');
 
     Route::put('/users/{user}/attach', 'UserController@attach')->name('user.role.attach');
+    
     Route::put('/users/{user}/detach', 'UserController@detach')->name('user.role.detach');
 
-});
-
-Route::middleware(['auth', 'can:view,user'])->group(function() 
+    
+    Route::middleware(['can:view,user'])->group(function() 
     {
         Route::get('/users/{user}/profile', 'UserController@show')->name('user.profile.show');
     });

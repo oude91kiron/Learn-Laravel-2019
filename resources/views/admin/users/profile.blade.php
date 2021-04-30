@@ -25,7 +25,7 @@
                     <!-- name -->
                     <div class="form-group">
                         <label for="name">name</label>
-                        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="username" value="{{$user->username}}">
+                        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="username" value="{{$user->name}}">
                     </div>
 
                     <!-- username -->
